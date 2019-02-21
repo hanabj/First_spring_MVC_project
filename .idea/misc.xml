@@ -4,8 +4,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/HanafirstSpringMVCproject/pom.xml" />
+        <option value="$PROJECT_DIR$/../../Ex_Files_Spring_MVC/Ex_Files_Spring_MVC/Exercise Files/Ch4/04_02/End/spring_mvc_project/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://www.thymeleaf.org" location="$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

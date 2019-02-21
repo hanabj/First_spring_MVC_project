@@ -1,4 +1,4 @@
-package com.landonhotel.eventsapp.domain;
+package com.hanahotel.eventsapp.domain;
 
 import java.util.Date;
 
