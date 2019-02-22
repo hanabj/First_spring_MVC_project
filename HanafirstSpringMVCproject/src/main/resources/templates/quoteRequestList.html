@@ -6,8 +6,21 @@
 </head>
 <body>
 
-    <h1>Request an Estimate</h1>
-    
-    
+    <h1>List of Requests</h1>
+
+
+    <div th:if="${not #lists.isEmpty(ListOfRequests)}">
+        <h2>Counts List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Event Type</th>
+            </tr>
+            <tr th:each="request : ${ListOfRequests}">
+                <td th:text="${request.id}"></td>
+                <td th:text="${request.eventType}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

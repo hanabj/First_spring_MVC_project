@@ -6,8 +6,19 @@
 </head>
 <body>
 
-    <h1>Request an Estimate</h1>
-    
-    
+    <h1>Detail of Request</h1>
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Event Type</th>
+            </tr>
+            <tr th:each="request : ${quoteRequestBean}">
+                <td th:text="${request.id}"></td>
+                <td th:text="${request.eventType}"></td>
+            </tr>
+        </table>
+
 </body>
 </html>

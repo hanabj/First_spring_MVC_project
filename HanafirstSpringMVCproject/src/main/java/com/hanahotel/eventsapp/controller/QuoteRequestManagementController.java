@@ -1,8 +1,12 @@
 package com.hanahotel.eventsapp.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.hanahotel.eventsapp.datarepos.QuoteRequestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,25 +25,33 @@ import com.hanahotel.eventsapp.domain.QuoteRequest;
 @Controller
 public class QuoteRequestManagementController {
 
+
+    @Autowired
+    private QuoteRequestRepository quoteRequestRepository;
+
     @GetMapping(path = "/quoteRequests")
-    public String listRequests() {
+    public String listRequests(Model model) {
 
-
+        List<QuoteRequest> listRequests = new ArrayList<>();
+        quoteRequestRepository.findAll().forEach(listRequests::add);
+        model.addAttribute("ListOfRequests", listRequests);
         return "quoteRequestList";
     }
 
-    @GetMapping(path = "/quoteRequests", params="eventType=wedding")
-    public String listWeddingRequests() {
+    @GetMapping(path = "/quoteRequests", params="eventType=Wedding")
+    public String listWeddingRequests(Model model) {
 
-
+        List<QuoteRequest> listRequests = new ArrayList<>();
+        quoteRequestRepository.findByEventType("Wedding").forEach(listRequests::add);
+        model.addAttribute("ListOfRequests", listRequests);
         return "quoteRequestList";
     }
 
-    @GetMapping("/quoteRequest/{quotedId}")
-    public ModelAndView viewQuoteRequest(@PathVariable int quoteId) {
-        QuoteRequest quoteRequestBean = new QuoteRequest();
-        quoteRequestBean.setBudget(5000);
-        quoteRequestBean.setEventType("wedding");
+    @GetMapping("/quoteRequest/{id}")
+    public ModelAndView viewQuoteRequest(@PathVariable int id) {
+        QuoteRequest quoteRequestBean= new QuoteRequest();
+        if (quoteRequestRepository.findById(id).isPresent())
+            quoteRequestBean= quoteRequestRepository.findById(id).get();
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("quoteRequestBean", quoteRequestBean);
@@ -49,15 +61,17 @@ public class QuoteRequestManagementController {
     }
 
     @GetMapping("/quoteRequest/social/{id}")
-    public String viewRequestSocial(@PathVariable int id) {
+    public ModelAndView viewRequestSocial(@PathVariable int id) {
         String returnViewName = "quoteRequestSocialEventDetail";
 
-        boolean someCondition = true;
-        if (someCondition) {
-            returnViewName = "redirect:/quoteRequest/wedding/{id}";
+
+        if ((quoteRequestRepository.findById(id).isPresent())) {
+            QuoteRequest quoteRequestBean= quoteRequestRepository.findById(id).get();
+            if (quoteRequestBean.getEventType().equalsIgnoreCase("Wedding"))
+            returnViewName = "redirect:/quoteRequest/{id}?eventType";
         }
 
-        return returnViewName;
+         return new ModelAndView(returnViewName);
     }
 
     @GetMapping

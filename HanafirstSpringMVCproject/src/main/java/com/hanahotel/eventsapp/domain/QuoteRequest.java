@@ -1,10 +1,24 @@
 package com.hanahotel.eventsapp.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="QUOTE_REQUEST")
 public class QuoteRequest {
-	
-	private Customer customer;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Id
+	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	private Integer id;
+	//private Customer customer;
 	private String eventType;  // social, corporate
 	private Date eventDate;
 	private String eventStartTime;
@@ -24,13 +38,13 @@ public class QuoteRequest {
 	
 	private int budget;
 
-	public Customer getCustomer() {
+	/*public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
+	}*/
 
 	public String getEventType() {
 		return eventType;

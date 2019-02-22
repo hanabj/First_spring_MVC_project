@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HanafirstSpringMVCproject" />
-        <module name="landon-hotel-event-mgmt-app" />
+        <module name="tdd-02-02-project-end" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -15,6 +15,7 @@
       <module name="landon-hotel-event-mgmt-app" target="1.8" />
       <module name="landon-hotel-event-mgmt-app (1)" target="1.8" />
       <module name="landon-hotel-event-mgmt-app (2)" target="1.8" />
+      <module name="tdd-02-02-project-end" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
